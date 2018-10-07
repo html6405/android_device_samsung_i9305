@@ -5,11 +5,12 @@ PRODUCT_RELEASE_NAME := i9305
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/samsung/i9305/full_i9305.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, device/samsung/i9305/i9305.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := i9305
