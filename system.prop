@@ -2,7 +2,7 @@
 # system.prop for i9305
 #
 
-rild.libpath=/system/lib/libsec-ril.so
+rild.libpath=/system/lib/libsecril-shim.so
 ro.telephony.default_network=9
 telephony.lteOnGsmDevice=1
 telephony.lteOnCdmaDevice=0
@@ -11,4 +11,3 @@ ro.hdcp2.rx=tz
 ro.sf.lcd_density=320
 ro.lcd_min_brightness=20
 ro.egl.destroy_after_detach=true
-persist.radio.no_wait_for_card=1
