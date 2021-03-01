@@ -31,8 +31,10 @@ BOARD_GLOBAL_CFLAGS += -DCAMERA_WITH_CITYID_PARAM
 # Graphics
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
+TW_THEME := portrait_mdpi
+
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
+TARGET_KERNEL_SOURCE := kernel/samsung/kona
 TARGET_KERNEL_CONFIG := lineageos_i9305_defconfig
 
 # Recovery
