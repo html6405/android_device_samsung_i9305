@@ -57,6 +57,11 @@ TARGET_OTA_ASSERT_DEVICE := m3,m3xx,i9305,GT-I9305
 # inherit from the proprietary version
 -include vendor/samsung/i9305/BoardConfigVendor.mk
 
+# Init
+ifneq ($(WITH_TWRP), true)
+TARGET_INIT_VENDOR_LIB := libinit_i9305
+endif
+
 # Selinux
 BOARD_SEPOLICY_DIRS += device/samsung/i9305/selinux/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += device/samsung/i9305/selinux/public
