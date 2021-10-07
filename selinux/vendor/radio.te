@@ -1,0 +1,2 @@
+allow radio sysfs_cpuinfo:dir search;
+allow radio sysfs_cpuinfo:file { getattr open read };

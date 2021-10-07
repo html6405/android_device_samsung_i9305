@@ -58,5 +58,6 @@ TARGET_OTA_ASSERT_DEVICE := m3,m3xx,i9305,GT-I9305
 -include vendor/samsung/i9305/BoardConfigVendor.mk
 
 # Selinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/i9305/selinux
+BOARD_SEPOLICY_DIRS += device/samsung/i9305/selinux/vendor
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += device/samsung/i9305/selinux/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += device/samsung/i9305/selinux/private
