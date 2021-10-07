@@ -38,7 +38,7 @@ DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/tiny_hw.xml:system/etc/sound/m3
+    $(LOCAL_PATH)/configs/tiny_hw.xml:vendor/etc/sound/i9305
 
 # Camera
 PRODUCT_PACKAGES += \
