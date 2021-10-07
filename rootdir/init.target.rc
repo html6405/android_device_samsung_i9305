@@ -1,13 +1,52 @@
+import /vendor/etc/init/hw/init.target.usb.rc
+
 #########################################################################################################################
 on init
 #########################################################################################################################
+
+# cpu freq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/boost_freq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/boost_lock_time
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/boost_mincpus
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_freq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_down_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_freq
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpu_up_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/cpucore_table
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/down_differential
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/dvfs_debug
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/freq_for_responsiveness
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/freq_step
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_1_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_2_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_3_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_freq_4_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_lock
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_1_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_2_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_3_1
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/hotplug_rq_4_0
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/max_cpu_lock
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/min_cpu_lock
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate_min
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/up_nr_cpus
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold
+    chown system system /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold_at_min_freq
 
 # Vibetonz
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 shell shell
 
 # MDM requirement
-    mkdir /data/cp_log
     chmod 0775 /data/cp_log
     chown system radio /data/cp_log
 
@@ -25,17 +64,7 @@ on init
     chown system radio /dev/block/modem/dump_path
     chmod 0775 /dev/block/modem/dump_path
 
-    mkdir /firmware 0771 system system
-    chown system system /tombstones
-    chmod 0775 /tombstones
-    mkdir /tombstones/modem 0775 system system
-    mkdir /tombstones/lpass 0775 system system
-    mkdir /tombstones/wcnss 0775 system system
-    mkdir /tombstones/dsps 0775 system system
-    rmdir /tombstones/qcks
-    mkdir /tombstones/qcks 771 system system
-    rmdir /tombstones/efs
-    mkdir /tombstones/efs 771 system system
+
 
 #########################################################################################################################
 on post-fs-data
@@ -91,13 +120,12 @@ on post-fs-data
 
 # Restorecon
     restorecon_recursive /efs
-    restorecon_recursive /tombstones
-    restorecon /tombstones/qcks/temp.dump
+    write /data/.cid.info 0
     restorecon /data/.cid.info
     restorecon /data/ISP_CV
     restorecon_recursive /efs/wifi
 
-# Waketime fot fast dormancy
+    # Waketime for fast dormancy
     chown system radio /sys/devices/platform/mdm_hsic_pm0/waketime
     chmod 0660 /sys/devices/platform/mdm_hsic_pm0/waketime
 
@@ -135,16 +163,49 @@ on property:init.svc.macloader=stopped
     chown system root /data/.rev
     chmod 0666 /data/.rev
 
+    # zram
+    swapon_all /vendor/etc/fstab.smdk4x12
+
 #########################################################################################################################
 on boot
 #########################################################################################################################
 
-service qc_kickstart /system/bin/qcks s
+#RIL
+    setprop rild.libpath "/vendor/lib/libsec-ril.so"
+    setprop ro.telephony.default_network 9
+	  setprop telephony.lteOnGsmDevice 1
+    setprop telephony.lteOnCdmaDevice 0
+    setprop ro.ril.telephony.mqanelements 6
+    setprop ro.hdcp2.rx tz
+    setprop ro.com.android.dataroaming false
+
+# Changing scheduler to noop during boot
+    write /sys/block/mmcblk0/queue/scheduler noop
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+
+# Changing scheduler to cfq and reseting cpu min freq to -1 after boot complete
+on property:sys.boot_completed=1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor pegasusq
+    write /sys/block/mmcblk0/queue/scheduler cfq
+    write /sys/power/cpufreq_min_limit -1
+
+    # Swapping 1 page at a time is ok
+    write /proc/sys/vm/page-cluster 0
+
+    write /proc/sys/vm/swappiness 100
+
+    # increase read-ahead value to 256 kb
+    write /sys/block/mmcblk0/queue/read_ahead_kb 256
+
+service qc_kickstart /vendor/bin/qcks.sh
     class core
     user root
     group radio cache inet misc audio sdcard_rw log
+    oneshot
+    seclabel u:r:kickstart:s0
 
-service qmuxd /system/bin/qmuxd
+service qmuxd /vendor/bin/qmuxd
     class main
-    user root
+    user system
     group radio log audio bluetooth gps log
+    seclabel u:r:qmuxd:s0
