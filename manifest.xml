@@ -230,9 +230,9 @@
             <instance>default</instance>
         </interface>
         <interface>
-             <name>IDrmFactory</name>
-             <instance>default</instance>
-         </interface>
+            <name>IDrmFactory</name>
+            <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl">
         <name>android.hardware.media.omx</name>
@@ -244,15 +244,6 @@
         </interface>
         <interface>
             <name>IOmxStore</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.lineage.touch</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ITouchscreenGesture</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -270,6 +261,10 @@
         </interface>
         <interface>
             <name>IReadingEnhancement</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IAdaptiveBacklight</name>
             <instance>default</instance>
         </interface>
         <interface>
