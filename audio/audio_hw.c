@@ -193,7 +193,7 @@ struct m0_dev_cfg {
 };
 
 /* QCOM CSD-Client */
-#define CSD_CLIENT_LIBPATH "/system/lib/libcsd-client.so"
+#define CSD_CLIENT_LIBPATH "/vendor/lib/libcsd-client.so"
 
 void *mCsdHandle;
 int rx_dev_id, tx_dev_id, old_rx_dev;
