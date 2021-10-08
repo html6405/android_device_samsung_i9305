@@ -39,6 +39,11 @@ PRODUCT_COPY_FILES += \
 # HIDL
 DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 
+# prebuild apps
+
+PRODUCT_PACKAGES += \
+	Via
+
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/tiny_hw.xml:vendor/etc/sound/i9305
