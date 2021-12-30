@@ -16,9 +16,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS18.xml</string>
+    <string name="updater_server_url" translatable="false">http://html6405.ddns.net/{device}/html6405/LOS19.xml</string>
 
-    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/rom-unofficial-11-0-i9305-lineageos-18-1-alpha-treblelized.4344215/post-85742173</string>
+    <string name="menu_changelog_url" translatable="false">https://forum.xda-developers.com/t/rom-unofficial-12-0-i9305-lineageos-19-0-alpha.4400765/post-86402385</string>
 
 </resources>
 
