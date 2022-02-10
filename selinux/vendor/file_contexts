@@ -59,6 +59,7 @@
 /data/.wifiver.info                                              u:object_r:wifi_data_file:s0
 /data/.psm.info                                                  u:object_r:wifi_data_file:s0
 /sys/module/dhd/parameters/firmware_path                         u:object_r:wifi_firmware_path:s0
+/system/bin/clean_scratch_files                                  u:object_r:clean_scratch_files_exec:s0
 
 # Display
 /sys/devices/platform/s5p-dsim.0(/.*)?			u:object_r:display_vendor_data_file:s0
