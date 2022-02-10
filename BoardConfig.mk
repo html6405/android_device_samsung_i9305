@@ -63,6 +63,6 @@ TARGET_INIT_VENDOR_LIB := libinit_i9305
 endif
 
 # Selinux
-BOARD_SEPOLICY_DIRS += device/samsung/i9305/selinux/vendor
+BOARD_VENDOR_SEPOLICY_DIRS += device/samsung/i9305/selinux/vendor
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += device/samsung/i9305/selinux/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += device/samsung/i9305/selinux/private
