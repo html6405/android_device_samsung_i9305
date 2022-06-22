@@ -60,10 +60,6 @@ PRODUCT_PACKAGES += \
     Tag
 
 # RIL
-PRODUCT_PACKAGES += \
-    libsecril-client \
-    libsecril-client-sap
-
 PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1
 
