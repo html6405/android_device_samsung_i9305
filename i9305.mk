@@ -89,7 +89,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:vendor/etc/permissions/android.hardware.telephony.gsm.xml
 
 # Configure dalvik heap
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, $(LOCAL_PATH)/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Include device blobs first
 $(call inherit-product, vendor/samsung/i9305/i9305-vendor.mk)
