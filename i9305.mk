@@ -48,7 +48,7 @@ PRODUCT_PACKAGES += \
     camera.smdk4x12
 
 # NFC
-# PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     nfc.exynos4 \
     libnfc \
     libnfc_jni \
@@ -63,20 +63,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     sensors.smdk4x12
 
-# PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:vendor/etc/permissions/android.hardware.nfc.xml
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
-    # NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
+    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
 else
-    # NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access_debug.xml
+    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access_debug.xml
 endif
 
-# PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):vendor/etc/nfcee_access.xml
 
-# PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     com.android.nfc_extras
 
 # These are the hardware-specific features
