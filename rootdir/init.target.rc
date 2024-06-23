@@ -168,8 +168,8 @@ on boot
 
 #RIL
     setprop vendor.rild.libpath "/vendor/lib/libsec-ril.so"
-    setprop ro.telephony.default_network 9
-	  setprop telephony.lteOnGsmDevice 1
+    setprop ro.telephony.default_network 0
+	setprop telephony.lteOnGsmDevice 1
     setprop telephony.lteOnCdmaDevice 0
     setprop ro.ril.telephony.mqanelements 6
     setprop ro.hdcp2.rx tz
